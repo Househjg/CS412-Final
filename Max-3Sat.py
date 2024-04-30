@@ -24,7 +24,6 @@ def max_3Sat(num_variables, clauses):
     variables = [1 for _ in range(num_variables)]
     max = 0
     all_combinations = itertools.product([1, -1], repeat=num_variables)
-
     for combination in all_combinations:
         clauses_satisfied = max_3Sat_helper(combination, clauses)
         if clauses_satisfied == clauses:
