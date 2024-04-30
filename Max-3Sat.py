@@ -1,5 +1,6 @@
 import itertools
 
+
 def main():
     num_variables, num_clauses = [int(x) for x in input().split()]
     clauses = []
@@ -10,13 +11,14 @@ def main():
 
     variables, max = max_3Sat(num_variables, clauses)
     print(max)
-    
+
     for i in range(len(variables)):
         if variables[i] > 0:
             result_string = "T"
         else:
             result_string = "F"
         print(f"{i + 1} {result_string}")
+
 
 def max_3Sat(num_variables, clauses):
     variables = [1 for _ in range(num_variables)]
@@ -32,6 +34,7 @@ def max_3Sat(num_variables, clauses):
             max = clauses_satisfied
 
     return variables, max
+
 
 def max_3Sat_helper(variables, clauses):
     clauses_satisfied = 0
