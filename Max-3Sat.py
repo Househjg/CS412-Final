@@ -2,12 +2,15 @@ import itertools
 
 
 def max_3Sat(num_variables, clauses):
+    # Fill default list
     variables = [1 for _ in range(num_variables)]
     max = 0
+    # Make all combinations to get the correct answer
     all_combinations = itertools.product([1, -1], repeat=num_variables)
     for combination in all_combinations:
         clauses_satisfied = max_3Sat_helper(combination, clauses)
         if clauses_satisfied == clauses:
+            # Return the answer if there can't be a better answer
             return combination, clauses_satisfied
         elif clauses_satisfied > max:
             variables = combination
@@ -16,8 +19,8 @@ def max_3Sat(num_variables, clauses):
     return variables, max
 
 
-def simple_greedy_sat(n, clauses):
-    # Start with random values
+def greedy_3sat(n, clauses):
+    # Fill default list
     variables = [1 for _ in range(n)]
     satisfied = max_3Sat_helper(variables, clauses)
 
@@ -68,7 +71,7 @@ def main():
 
     print("\nGREEDY\n")
 
-    values, satisfied = simple_greedy_sat(num_variables, clauses)
+    values, satisfied = greedy_3sat(num_variables, clauses)
     print(satisfied)
 
     for i in range(len(values)):
