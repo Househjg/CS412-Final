@@ -16,6 +16,26 @@ def max_3Sat(num_variables, clauses):
     return variables, max
 
 
+def simple_greedy_sat(n, clauses):
+    # Start with random values
+    variables = [1 for _ in range(n)]
+    satisfied = max_3Sat_helper(variables, clauses)
+
+    for _ in range(2 ** n):
+        for i in range(n):
+            # Flip the value of variable i
+            variables[i] = -1
+            new_satisfied = max_3Sat_helper(variables, clauses)
+            # If flipping improves the count, keep it
+            if new_satisfied > satisfied:
+                satisfied = new_satisfied
+            else:
+                # Revert value if it doesn't improve
+                variables[i] = 1
+
+    return variables, satisfied
+
+
 def max_3Sat_helper(variables, clauses):
     clauses_satisfied = 0
 
@@ -36,11 +56,23 @@ def main():
         clause = [int(x) for x in input().split()]
         clauses.append(clause)
 
+    print()
+    print()
+    print("OPTIMIZED\n")
+
     variables, max = max_3Sat(num_variables, clauses)
     print(max)
 
     for i in range(len(variables)):
         print(i + 1, 'T' if variables[i] > 0 else 'F')
+
+    print("\nGREEDY\n")
+
+    values, satisfied = simple_greedy_sat(num_variables, clauses)
+    print(satisfied)
+
+    for i in range(len(values)):
+        print(i + 1, 'T' if values[i] > 0 else 'F')
 
 
 if __name__ == "__main__":

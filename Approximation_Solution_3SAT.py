@@ -23,9 +23,11 @@ def simple_greedy_sat(n, clauses):
 def main():
     num_variables, num_clauses = [int(x) for x in input().split()]
     clauses = []
+
     for _ in range(num_clauses):
         clause = [int(x) for x in input().split()]
         clauses.append(clause)
+    
     satisfied, values = simple_greedy_sat(num_variables, clauses)
     print(satisfied)
     for index, value in enumerate(values):
