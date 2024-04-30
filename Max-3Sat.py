@@ -1,25 +1,6 @@
 import itertools
 
 
-def main():
-    num_variables, num_clauses = [int(x) for x in input().split()]
-    clauses = []
-
-    for _ in range(num_clauses):
-        clause = [int(x) for x in input().split()]
-        clauses.append(clause)
-
-    variables, max = max_3Sat(num_variables, clauses)
-    print(max)
-
-    for i in range(len(variables)):
-        if variables[i] > 0:
-            result_string = "T"
-        else:
-            result_string = "F"
-        print(f"{i + 1} {result_string}")
-
-
 def max_3Sat(num_variables, clauses):
     variables = [1 for _ in range(num_variables)]
     max = 0
@@ -45,6 +26,21 @@ def max_3Sat_helper(variables, clauses):
                 break
 
     return clauses_satisfied
+
+
+def main():
+    num_variables, num_clauses = [int(x) for x in input().split()]
+    clauses = []
+
+    for _ in range(num_clauses):
+        clause = [int(x) for x in input().split()]
+        clauses.append(clause)
+
+    variables, max = max_3Sat(num_variables, clauses)
+    print(max)
+
+    for i in range(len(variables)):
+        print(i + 1, 'T' if variables[i] > 0 else 'F')
 
 
 if __name__ == "__main__":
