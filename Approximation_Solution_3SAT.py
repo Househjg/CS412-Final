@@ -33,5 +33,6 @@ def main():
     for index, value in enumerate(values):
         print(index + 1, 'T' if value > 0 else 'F')
 
+
 if __name__ == "__main__":
     main()
