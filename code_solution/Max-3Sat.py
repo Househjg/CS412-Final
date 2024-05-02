@@ -100,6 +100,9 @@ def max_3Sat_helper(variables, clauses):
     return clauses_satisfied
 
 
+def format_time(seconds):
+    return f"Time: {round(seconds // 60)} Minutes {round(seconds % 60, 2)} Seconds"
+
 def main():
     num_variables, num_clauses = [int(x) for x in input().split()]
     clauses = []
@@ -111,10 +114,10 @@ def main():
     print()
     print()
     print("OPTIMIZED\n")
-    start = timer()
+    startO = timer()
     variables, max = max_3Sat(num_variables, clauses)
-    end = timer()
-    print(end - start)
+    endO = timer()
+    print(format_time(endO - startO))
     print()
     print(max)
 
@@ -123,10 +126,11 @@ def main():
 
     print("\nGREEDY\n")
 
-    start = timer()
+    startG = timer()
     variables, max = greedy_3sat(num_variables, clauses)
-    end = timer()
-    print(end - start)
+    endG = timer()
+
+    print(format_time(endG - startG))
     print()
     print(max)
 
