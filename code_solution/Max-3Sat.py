@@ -1,4 +1,5 @@
 import itertools
+from timeit import default_timer as timer
 
 
 # def max_3Sat(num_variables, clauses):
@@ -57,20 +58,20 @@ def max_3Sat(num_variables, clauses):
 
 def greedy_3sat(n, clauses):
     # Fill default list
-    variables = [1 for _ in range(n)]
+    variables = [-1 for _ in range(n)]
     satisfied = max_3Sat_helper(variables, clauses)
 
     for _ in range(2 ** n):
         for i in range(n):
             # Flip the value of variable i
-            variables[i] = -1
+            variables[i] = 1
             new_satisfied = max_3Sat_helper(variables, clauses)
             # If flipping improves the count, keep it
             if new_satisfied > satisfied:
                 satisfied = new_satisfied
             else:
                 # Revert value if it doesn't improve
-                variables[i] = 1
+                variables[i] = -1
 
     return variables, satisfied
 
@@ -110,8 +111,11 @@ def main():
     print()
     print()
     print("OPTIMIZED\n")
-
+    start = timer()
     variables, max = max_3Sat(num_variables, clauses)
+    end = timer()
+    print(end - start)
+    print()
     print(max)
 
     for i in range(len(variables)):
@@ -119,7 +123,11 @@ def main():
 
     print("\nGREEDY\n")
 
+    start = timer()
     variables, max = greedy_3sat(num_variables, clauses)
+    end = timer()
+    print(end - start)
+    print()
     print(max)
 
     for i in range(len(variables)):
