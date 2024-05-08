@@ -11,8 +11,8 @@ def max_3Sat(num_variables, clauses):
     all_combinations = itertools.product([1, -1], repeat=num_variables)
     for combination in all_combinations:
         clauses_satisfied = max_3Sat_helper(combination, clauses)
+        # Return the answer if all clauses are satisfied
         if clauses_satisfied == len(clauses):
-            # Return the answer if all clauses are satisfied
             return combination, clauses_satisfied
         elif clauses_satisfied > max:
             variables = combination
@@ -28,9 +28,6 @@ def greedy_3sat(num_variables, clauses):
     satisfied = max_3Sat_helper(variables, clauses)
 
     for _ in range(math.ceil((2 ** num_variables) / num_variables)):
-    # for _ in range(2 ** num_variables):
-    # for _ in range((2 ** num_variables)):
-    # for _ in range(10):
         for i in range(num_variables):
             # Flip the value of variable i
             variables[i] *= -1
@@ -86,7 +83,6 @@ def main():
     endO = timer()
 
     print(format_time(endO - startO))
-    # print(endO - startO)
     print(max)
 
     format_variables(variables)
@@ -98,7 +94,6 @@ def main():
     endG = timer()
 
     print(format_time(endG - startG))
-    # print(endG - startG)
     print(max)
 
     format_variables(variables)

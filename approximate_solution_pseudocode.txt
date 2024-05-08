@@ -1,0 +1,31 @@
+Function greedy_3SAT(num_variables, clauses)
+    Initialize variables array with 1 for each variable
+    satisfied <-- max_3Sat_helper(variables, clauses)
+    num_iterations <-- (2 ^ num_variables) / num_variables
+    
+    For iteration from 1 to num_iterations do
+        For i from 0 to num_variables - 1 do
+            variables[i] <-- variables[i] * -1
+            new_satisfied <-- max_3Sat_helper(variables, clauses)
+            
+            If new_satisfied satisfies all clauses then
+                Return variables, new_satisfied
+            
+            If new_satisfied > satisfied then
+                satisfied <-- new_satisfied
+            Else
+                variables[i] <-- variables[i] * -1
+    Return variables, satisfied
+
+
+Function max_3Sat_helper(variables, clauses)
+    Initialize clauses_satisfied as 0
+
+    For each clause in clauses
+        For each literal in the clause
+            Determine the index of the variable corresponding to the literal
+            If the sign of the literal matches the value assigned in variables
+                Increment the count of clauses_satisfied
+                Break out of the loop (proceed to the next clause)
+
+    Return clauses_satisfied

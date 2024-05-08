@@ -12,7 +12,7 @@ def generate_test_case(num_vars, num_clauses):
                 clause.append(var)
             else:
                 clause.append(-var)
-            clause = list(set(clause))  # Ensure uniqueness
+            clause = list(set(clause))
         clauses.append(clause)
 
     return clauses
