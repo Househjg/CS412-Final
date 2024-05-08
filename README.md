@@ -148,3 +148,42 @@ Rubrics:
         
     Evaluation of Other Projects (8 points) 
         You need to attend class to evaluate the presentations of other students. 
+
+
+15 1000
+15 2000
+15 3000
+15 4000
+15 5000
+
+10 1000
+15 1000
+20 1000
+25 1000
+
+
+Function max_3Sat(num_variables, clauses)
+    Initialize variables array with 1 for each variable
+    Initialize max as 0
+
+    Generate all possible combinations of truth values for the variables
+    For each combination
+        Calculate the number of satisfied clauses using max_3Sat_helper(combination, clauses)
+        If all clauses are satisfied
+            Return this combination and the total number of clauses
+        Else if this combination satisfies more clauses than previous combinations
+            Update the best known combination and the max count of satisfied clauses
+
+    Return the best combination and the max count of satisfied clauses
+
+Function max_3Sat_helper(variables, clauses)
+    Initialize clauses_satisfied as 0
+
+    For each clause in clauses
+        For each literal in the clause
+            Determine the index of the variable corresponding to the literal
+            If the sign of the literal matches the value assigned in variables
+                Increment the count of clauses_satisfied
+                Break out of the loop (proceed to the next clause)
+
+    Return clauses_satisfied
