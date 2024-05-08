@@ -24,8 +24,9 @@ def write_test_case(filename, test_case, num_vars):
             f.write(" ".join(map(str, clause)) + "\n")
 
 if __name__ == "__main__":
-    num_vars = 22
+    num_vars = 10
     num_clauses = 1000
+
     test_case = generate_test_case(num_vars, num_clauses)
-    write_test_case("22_1000.txt", test_case, num_vars)
+    write_test_case("10_1000.txt", test_case, num_vars)
     print("Test case generated and saved as 'large_test_case.txt'")
